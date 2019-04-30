@@ -43,6 +43,7 @@ const metaData = [
  */
 const OrderStatus: React.FC<IProps> = props => {
     const meta = metaData[props.status]
+
     return <span className={meta.css}>{meta.text}</span>
 }
 

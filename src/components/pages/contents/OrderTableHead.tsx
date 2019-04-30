@@ -1,14 +1,14 @@
 /**
- * OrderTableHeader component
+ * OrderTableHead component
  *
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
 
 /**
- * OrderTableHeader component
+ * OrderTableHead component
  */
-const OrderTableHeader: React.FC = () => (
+const OrderTableHead: React.FC = () => (
     <thead>
         <tr>
             <th>
@@ -39,4 +39,4 @@ const OrderTableHeader: React.FC = () => (
     </thead>
 )
 
-export default OrderTableHeader
+export default OrderTableHead

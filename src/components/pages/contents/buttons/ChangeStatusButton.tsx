@@ -10,6 +10,7 @@ import * as React from 'react'
  */
 interface IProps {
     status: number
+    setStatus: (status: number) => void
 }
 
 /**
@@ -42,10 +43,21 @@ const metaData = [
  * ChangeStatusButton component
  */
 const ChangeStatusButton: React.FC<IProps> = props => {
-    const meta = metaData[props.status]
+    const { status, setStatus } = props
+
+    const handleClick = () => {
+        if (confirm(`「${metaData[status].text}」ボタンを押しますか？`)) {
+            setStatus(status + 1)
+        }
+    }
+
     return (
-        <button id={meta.id} className="order__button">
-            {meta.text}
+        <button
+            id={metaData[status].id}
+            className="order__button"
+            onClick={() => handleClick()}
+        >
+            {metaData[status].text}
         </button>
     )
 }
