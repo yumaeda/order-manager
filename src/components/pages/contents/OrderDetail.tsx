@@ -9,6 +9,8 @@ import { IOrder } from '../../../interfaces/IOrder'
 import PriceText from '../../common/PriceText'
 import Select from '../../common/Select'
 import ReceiptButton from './buttons/ReceiptButton'
+import Field from './Field'
+import FieldContainer from './FieldContainer'
 import CoolText from './texts/CoolText'
 
 /**
@@ -92,75 +94,73 @@ const OrderDetail: React.FC<IProps> = props => {
                 <br />
                 <span className="text--size-small">{`〒${post_code} ${customer_address}`}</span>
             </div>
-            <div>
-                <span id="purchasedWineText" className="text--size-small">
-                    [ 購入ワイン ]<br />
-                    <span>
-                        #
-                        <input
-                            type="text"
-                            value="7590"
-                            className="barcodeFld"
-                            /*rel="12"*/
-                        />
-                        &nbsp;&nbsp;2017 Touraine Sauvignon Blanc (Domaine de
-                        Bellevue) x 12
+            <FieldContainer>
+                <Field label="購入ワイン">
+                    <span id="purchasedWineText" className="text--size-small">
+                        <span>
+                            #
+                            <input
+                                type="text"
+                                value="7590"
+                                className="barcodeFld"
+                                /*rel="12"*/
+                            />
+                            &nbsp;&nbsp;2017 Touraine Sauvignon Blanc (Domaine
+                            de Bellevue) x 12
+                        </span>
                     </span>
+                </Field>
+                <Field label="会員価格">
+                    <span id="memberPriceText">
+                        {member_discount === 1 ? 'Yes' : 'No'}
+                    </span>
+                </Field>
+                <Field label="合計額">
+                    <PriceText
+                        amount={wine_total}
+                        fee={fee}
+                        taxRate={taxRate}
+                    />
+                </Field>
+                <Field label="支払い方法">
+                    <Select options={paymentMethodOptions} />
+                </Field>
+                <Field label="配送業者">
+                    <span>ヤマト運輸</span>
+                </Field>
+                <Field label="配送先">
+                    <span>{`${name}様`}</span>
                     <br />
-                </span>
-                <br />
-            </div>
-            <div>
-                [ 会員価格 ]<br />
-                <span id="memberPriceText">
-                    {member_discount === 1 ? 'Yes' : 'No'}
-                </span>
-            </div>
-            <div>
-                [ 合計額 ]<br />
-                <PriceText amount={wine_total} fee={fee} taxRate={taxRate} />
-            </div>
-            <div>
-                [支払い方法 ]<br />
-                <Select options={paymentMethodOptions} />
-            </div>
-            <div>
-                [ 配送先 ]<br />
-                <span>{`${name}様`}</span>
-                <br />
-                <span>{`Tel: ${phone}`}</span>
-                <br />
-                <span>{`〒${address}`}</span>
-            </div>
-            <div>
-                [ 配送業者 ]<br />
-                <span>ヤマト運輸</span>
-            </div>
-            <div>
-                [ 配送希望時間 ]<br />
-                <input name="delivery-date" type="text" value={delivery_date} />
-                &nbsp;&nbsp;
-                <Select options={timeOptions} />
-            </div>
-            <div>
-                [ コメント ]<br />
-                <p>{comment}</p>
-            </div>
-            <div>
-                [ 送り状番号 ]<br />
-                <input
-                    type="text"
-                    name="transaction_id"
-                    value={transaction_id}
-                    onChange={() => alert('onChange')}
-                />
-                <br />
-                <input
-                    type="text"
-                    name="transaction_id2"
-                    value={transaction_id2}
-                />
-            </div>
+                    <span>{`Tel: ${phone}`}</span>
+                    <br />
+                    <span>{`〒${address}`}</span>
+                </Field>
+                <Field label="配送希望時間">
+                    <input
+                        name="delivery-date"
+                        type="text"
+                        value={delivery_date}
+                    />
+                    &nbsp;&nbsp;
+                    <Select options={timeOptions} />
+                </Field>
+                <Field label="コメント">
+                    <p>{comment}</p>
+                </Field>
+                <Field label="送り状番号">
+                    <input
+                        type="text"
+                        name="transaction_id"
+                        value={transaction_id}
+                        onChange={() => alert('onChange')}
+                    />
+                    <input
+                        type="text"
+                        name="transaction_id2"
+                        value={transaction_id2}
+                    />
+                </Field>
+            </FieldContainer>
             <div>
                 <input
                     type="button"

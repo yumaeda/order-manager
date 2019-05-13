@@ -1,0 +1,21 @@
+.field {
+    margin: 10px 0;
+
+    &__container {
+        max-height: 400px;
+        overflow-y: scroll;
+        padding: 15px;
+        margin: 15px 0;
+        border: 1px solid lightgray;
+    }
+
+    &__label {
+        font-weight: bold;
+        display: block;
+    }
+
+    &__input {
+        padding: 10px;
+        border: 1px solid lightblue;
+    }
+}
