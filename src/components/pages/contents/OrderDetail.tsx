@@ -11,6 +11,7 @@ import Select from '../../common/Select'
 import ReceiptButton from './buttons/ReceiptButton'
 import Field from './Field'
 import FieldContainer from './FieldContainer'
+import OrderedWineTable from './OrderedWineTable'
 import CoolText from './texts/CoolText'
 
 /**
@@ -51,6 +52,7 @@ const OrderDetail: React.FC<IProps> = props => {
         address,
         closeModal,
         comment,
+        contents,
         fee,
         order_id,
         customer_address,
@@ -96,19 +98,7 @@ const OrderDetail: React.FC<IProps> = props => {
             </div>
             <FieldContainer>
                 <Field label="購入ワイン">
-                    <span id="purchasedWineText" className="text--size-small">
-                        <span>
-                            #
-                            <input
-                                type="text"
-                                value="7590"
-                                className="barcodeFld"
-                                /*rel="12"*/
-                            />
-                            &nbsp;&nbsp;2017 Touraine Sauvignon Blanc (Domaine
-                            de Bellevue) x 12
-                        </span>
-                    </span>
+                    <OrderedWineTable contents={contents} />
                 </Field>
                 <Field label="会員価格">
                     <span id="memberPriceText">

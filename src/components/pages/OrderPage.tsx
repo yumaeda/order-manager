@@ -5,7 +5,7 @@
  */
 import * as React from 'react'
 import * as Modal from 'react-modal'
-import defaultOrders from '../../states'
+import { defaultOrders } from '../../states'
 import OrderDetail from './contents/OrderDetail'
 import OrderPageContents from './contents/OrderPageContents'
 import OrderPageHeader from './header/OrderPageHeader'

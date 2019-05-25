@@ -2,11 +2,47 @@
  * States
  */
 import { IOrder } from '../interfaces/IOrder'
+import { IWine } from '../interfaces/IWine'
+
+/**
+ * Default wine
+ */
+export const defaultWine: IWine = {
+    apply: '',
+    availability: '',
+    barcode_number: '',
+    capacity: 0,
+    catch_copy: '',
+    cepage: '',
+    combined_name: '',
+    combined_name_jpn: '',
+    comment: '',
+    country: '',
+    district: '',
+    district_jpn: '',
+    etc: '',
+    glass_price: 0,
+    importer: '',
+    member_price: 0,
+    original_comment: '',
+    point: '',
+    price: 0,
+    producer: '',
+    producer_jpn: '',
+    region: '',
+    region_jpn: '',
+    restaurant_price: 0,
+    stock: 0,
+    type: '',
+    village: '',
+    village_jpn: '',
+    vintage: ''
+}
 
 /**
  * Default orders
  */
-const defaultOrders: IOrder[] = [
+export const defaultOrders: IOrder[] = [
     {
         address: '',
         comment: '',
@@ -36,5 +72,3 @@ const defaultOrders: IOrder[] = [
         wine_total: 0
     }
 ]
-
-export default defaultOrders
