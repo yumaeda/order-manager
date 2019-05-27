@@ -47,8 +47,8 @@ const WineTableRow: React.FC<IProps> = props => {
             </td>
             <td>{wine.vintage}</td>
             <td>{wine.combined_name}</td>
-            <td>{` by ${wine.producer}`}</td>
-            <td>{` x ${qty}`}</td>
+            <td>{` [${wine.producer}]`}</td>
+            <td>{` x${qty}`}</td>
         </tr>
     )
 }

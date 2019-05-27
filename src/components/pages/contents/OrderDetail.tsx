@@ -54,6 +54,7 @@ const OrderDetail: React.FC<IProps> = props => {
         comment,
         contents,
         fee,
+        name,
         order_id,
         customer_address,
         customer_email,
@@ -61,7 +62,9 @@ const OrderDetail: React.FC<IProps> = props => {
         customer_phone,
         customer_phonetic,
         delivery_date,
+        delivery_time,
         member_discount,
+        payment_method,
         phone,
         post_code,
         refrigerated,
@@ -73,14 +76,12 @@ const OrderDetail: React.FC<IProps> = props => {
 
     return (
         <>
-            <div id="detailDialog">
+            <div className="order__title">
                 <CoolText isCool={refrigerated === 1} />
-                <span className="order__id" id="orderIdText">
-                    {order_id}
-                </span>
+                <span className="order__id">{order_id}</span>
                 <ReceiptButton orderId={order_id} />
             </div>
-            <ruby>
+            <ruby className="customer_name">
                 {customer_name}
                 <rp>{'('}</rp>
                 <rt>{customer_phonetic}</rt>
@@ -90,7 +91,9 @@ const OrderDetail: React.FC<IProps> = props => {
                 <a
                     className="text--size-small"
                     href={`mailto:${customer_email}`}
-                />
+                >
+                    {customer_email}
+                </a>
                 <br />
                 <span className="text--size-small">{`Tel: ${customer_phone}`}</span>
                 <br />
@@ -113,7 +116,10 @@ const OrderDetail: React.FC<IProps> = props => {
                     />
                 </Field>
                 <Field label="支払い方法">
-                    <Select options={paymentMethodOptions} />
+                    <Select
+                        options={paymentMethodOptions}
+                        value={payment_method.toString()}
+                    />
                 </Field>
                 <Field label="配送業者">
                     <span>ヤマト運輸</span>
@@ -132,7 +138,7 @@ const OrderDetail: React.FC<IProps> = props => {
                         value={delivery_date}
                     />
                     &nbsp;&nbsp;
-                    <Select options={timeOptions} />
+                    <Select options={timeOptions} value={delivery_time} />
                 </Field>
                 <Field label="コメント">
                     <p>{comment}</p>

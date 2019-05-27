@@ -11,21 +11,28 @@ import { IOption } from '../../interfaces/IOption'
  */
 interface IProps {
     options: IOption[]
+    value: string
 }
 
 /**
  * Select component
  */
 const Select: React.FC<IProps> = props => {
-    const { options } = props
+    const { options, value } = props
 
     return (
         <select>
-            {options.map((option: IOption, index: number) => (
-                <option value={option.value} key={index}>
-                    {option.text}
-                </option>
-            ))}
+            {options.map((option: IOption, index: number) =>
+                value === option.value ? (
+                    <option value={option.value} key={index} selected>
+                        {option.text}
+                    </option>
+                ) : (
+                    <option value={option.value} key={index}>
+                        {option.text}
+                    </option>
+                )
+            )}
         </select>
     )
 }
