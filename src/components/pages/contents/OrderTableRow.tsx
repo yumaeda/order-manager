@@ -10,6 +10,7 @@ import CancelOrderButton from './buttons/CancelOrderButton'
 import ChangeStatusButton from './buttons/ChangeStatusButton'
 import OrderDetailLink from './links/OrderDetailLink'
 import CoolText from './texts/CoolText'
+import DeliveryDateTimeText from './texts/DeliveryDateTimeText'
 import OrderStatusText from './texts/OrderStatusText'
 
 /**
@@ -27,37 +28,54 @@ interface IProps {
  */
 const OrderTableRow: React.FC<IProps> = props => {
     const { order, openModal, selectOrder, taxRate } = props
-    const [status, setStatus] = React.useState(order.status)
+    const {
+        address,
+        customer_name,
+        order_id,
+        refrigerated,
+        wine_total,
+        status,
+        fee,
+        delivery_date,
+        delivery_time,
+        name,
+        phone
+    } = order
+    const [orderStatus, setOrderStatus] = React.useState(status)
 
     return (
-        <tr id={order.order_id} className="order__column" key={order.order_id}>
+        <tr id={order_id} className="order__column" key={order_id}>
             <td>
-                <CoolText isCool={order.refrigerated === 1} />
+                <CoolText isCool={refrigerated === 1} />
             </td>
             <td>
                 <OrderDetailLink
                     openOrderDetail={openModal}
                     order={order}
                     setOrder={selectOrder}
-                    text={order.order_id}
                 />
             </td>
-            <td>{`${order.name}様`}</td>
+            <td>{`${customer_name}様`}</td>
             <td>
-                <PriceText
-                    amount={order.wine_total}
-                    fee={order.fee}
-                    taxRate={taxRate}
+                <PriceText amount={wine_total} fee={fee} taxRate={taxRate} />
+            </td>
+            <td>
+                <OrderStatusText status={orderStatus} />
+            </td>
+            <td className="delivery_date">
+                <DeliveryDateTimeText
+                    address={address}
+                    deliveryDate={delivery_date}
+                    deliveryTime={delivery_time}
+                    name={name}
+                    phone={phone}
                 />
             </td>
             <td>
-                <OrderStatusText status={status} />
-            </td>
-            <td className="delivery_date">{`${order.delivery_date} ${
-                order.delivery_time
-            }`}</td>
-            <td>
-                <ChangeStatusButton status={status} setStatus={setStatus} />
+                <ChangeStatusButton
+                    status={orderStatus}
+                    setStatus={setOrderStatus}
+                />
             </td>
             <td>
                 <CancelOrderButton />

@@ -13,14 +13,23 @@ interface IProps {
     openOrderDetail: () => void
     order: IOrder
     setOrder: (order: IOrder) => void
-    text: string
 }
 
 /**
  * OrderDetailLink component
  */
 const OrderDetailLink: React.FC<IProps> = props => {
-    const { openOrderDetail, order, setOrder, text } = props
+    const { openOrderDetail, order, setOrder } = props
+    const trackingId = order.transaction_id
+
+    let text = order.order_id
+    if (
+        trackingId &&
+        trackingId !== 'xxxxxxxx' &&
+        trackingId !== '0000-0000-0000'
+    ) {
+        text = `[Tracking #] ${trackingId}`
+    }
 
     return (
         <a
@@ -28,7 +37,6 @@ const OrderDetailLink: React.FC<IProps> = props => {
             onClick={() => {
                 setOrder(order)
                 openOrderDetail()
-
                 return false
             }}
         >
