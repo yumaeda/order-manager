@@ -24,6 +24,7 @@ const options: IOption[] = [
  * Interface for props
  */
 interface IProps {
+    onChange: (event: React.FormEvent<HTMLSelectElement>) => void
     value: string
 }
 
@@ -31,9 +32,9 @@ interface IProps {
  * TimeSelect component
  */
 const TimeSelect: React.FC<IProps> = props => {
-    const { value } = props
+    const { onChange, value } = props
 
-    return <Select options={options} value={value} />
+    return <Select options={options} value={value} onChange={onChange} />
 }
 
 export default React.memo(TimeSelect)

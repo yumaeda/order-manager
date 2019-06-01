@@ -10,18 +10,19 @@ import * as React from 'react'
  */
 interface IProps {
     closeModal: () => void
+    updateInfo: () => void
 }
 
 /**
  * OrderDetailFooter component
  */
 const OrderDetailFooter: React.FC<IProps> = props => {
-    const { closeModal } = props
+    const { closeModal, updateInfo } = props
 
     return (
         <div>
             <input type="button" onClick={() => closeModal()} value="閉じる" />
-            <input type="button" id="updateBtn" value="更新" />
+            <input type="button" onClick={() => updateInfo()} value="更新" />
         </div>
     )
 }

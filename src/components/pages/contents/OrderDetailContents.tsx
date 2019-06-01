@@ -22,6 +22,19 @@ interface IProps {
     name: string
     deliveryDate: string
     deliveryTime: string
+    handleChangeDeliveryDate: (event: React.FormEvent<HTMLInputElement>) => void
+    handleChangeDeliveryTime: (
+        event: React.FormEvent<HTMLSelectElement>
+    ) => void
+    handleChangePaymentMethod: (
+        event: React.FormEvent<HTMLSelectElement>
+    ) => void
+    handleChangeTrackingCode1: (
+        event: React.FormEvent<HTMLInputElement>
+    ) => void
+    handleChangeTrackingCode2: (
+        event: React.FormEvent<HTMLInputElement>
+    ) => void
     memberDiscount: number
     paymentMethod: number
     phone: string
@@ -43,6 +56,11 @@ const OrderDetailContents: React.FC<IProps> = props => {
         name,
         deliveryDate,
         deliveryTime,
+        handleChangeDeliveryDate,
+        handleChangeDeliveryTime,
+        handleChangePaymentMethod,
+        handleChangeTrackingCode1,
+        handleChangeTrackingCode2,
         memberDiscount,
         paymentMethod,
         phone,
@@ -66,7 +84,10 @@ const OrderDetailContents: React.FC<IProps> = props => {
                 <PriceText amount={total} fee={fee} taxRate={taxRate} />
             </Field>
             <Field label="支払い方法">
-                <PaymentSelect value={paymentMethod.toString()} />
+                <PaymentSelect
+                    value={paymentMethod.toString()}
+                    onChange={handleChangePaymentMethod}
+                />
             </Field>
             <Field label="配送業者">
                 <span>ヤマト運輸</span>
@@ -79,9 +100,17 @@ const OrderDetailContents: React.FC<IProps> = props => {
                 <span>{`〒${address}`}</span>
             </Field>
             <Field label="配送希望時間">
-                <input name="delivery-date" type="text" value={deliveryDate} />
+                <input
+                    name="delivery-date"
+                    type="text"
+                    value={deliveryDate}
+                    onChange={handleChangeDeliveryDate}
+                />
                 &nbsp;&nbsp;
-                <TimeSelect value={deliveryTime} />
+                <TimeSelect
+                    value={deliveryTime}
+                    onChange={handleChangeDeliveryTime}
+                />
             </Field>
             <Field label="コメント">
                 <p>{comment}</p>
@@ -91,12 +120,13 @@ const OrderDetailContents: React.FC<IProps> = props => {
                     type="text"
                     name="transaction_id"
                     value={trackingCode1}
-                    onChange={() => alert('onChange')}
+                    onChange={handleChangeTrackingCode1}
                 />
                 <input
                     type="text"
                     name="transaction_id2"
                     value={trackingCode2}
+                    onChange={handleChangeTrackingCode2}
                 />
             </Field>
         </FieldContainer>

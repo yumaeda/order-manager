@@ -47,6 +47,50 @@ const OrderDetail: React.FC<IProps> = props => {
         wine_total
     } = props
 
+    const [deliveryDate, setDeliveryDate] = React.useState(delivery_date)
+    const [deliveryTime, setDeliveryTime] = React.useState(delivery_time)
+    const [paymentMethod, setPaymentMethod] = React.useState(payment_method)
+    const [trackingCode1, setTrackingCode1] = React.useState(transaction_id)
+    const [trackingCode2, setTrackingCode2] = React.useState(transaction_id2)
+
+    const handleChangeDeliveryDate = (
+        event: React.FormEvent<HTMLInputElement>
+    ) => {
+        setDeliveryDate(event.currentTarget.value)
+    }
+
+    const handleChangeDeliveryTime = (
+        event: React.FormEvent<HTMLSelectElement>
+    ) => {
+        setDeliveryTime(event.currentTarget.value)
+    }
+
+    const handleChangePaymentMethod = (
+        event: React.FormEvent<HTMLSelectElement>
+    ) => {
+        setPaymentMethod(Number(event.currentTarget.value))
+    }
+
+    const handleChangeTrackingCode1 = (
+        event: React.FormEvent<HTMLInputElement>
+    ) => {
+        setTrackingCode1(event.currentTarget.value)
+    }
+
+    const handleChangeTrackingCode2 = (
+        event: React.FormEvent<HTMLInputElement>
+    ) => {
+        setTrackingCode2(event.currentTarget.value)
+    }
+
+    const handleSubmit = () => {
+        alert(`DeliveryDate: ${deliveryDate}`)
+        alert(`DeliveryTime: ${deliveryTime}`)
+        alert(`PaymentMethod: ${paymentMethod}`)
+        alert(`TrackingCode1: ${trackingCode1}`)
+        alert(`TrackingCode2: ${trackingCode2}`)
+    }
+
     return (
         <>
             <OrderDetailHeader
@@ -65,17 +109,25 @@ const OrderDetail: React.FC<IProps> = props => {
                 contents={contents}
                 fee={fee}
                 name={name}
-                deliveryDate={delivery_date}
-                deliveryTime={delivery_time}
+                deliveryDate={deliveryDate}
+                handleChangeDeliveryDate={handleChangeDeliveryDate}
+                deliveryTime={deliveryTime}
+                handleChangeDeliveryTime={handleChangeDeliveryTime}
                 memberDiscount={member_discount}
-                paymentMethod={payment_method}
+                paymentMethod={paymentMethod}
+                handleChangePaymentMethod={handleChangePaymentMethod}
                 phone={phone}
                 taxRate={taxRate}
-                trackingCode1={transaction_id}
-                trackingCode2={transaction_id2}
+                trackingCode1={trackingCode1}
+                handleChangeTrackingCode1={handleChangeTrackingCode1}
+                trackingCode2={trackingCode2}
+                handleChangeTrackingCode2={handleChangeTrackingCode2}
                 total={wine_total}
             />
-            <OrderDetailFooter closeModal={closeModal} />
+            <OrderDetailFooter
+                closeModal={closeModal}
+                updateInfo={handleSubmit}
+            />
         </>
     )
 }

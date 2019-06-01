@@ -11,6 +11,7 @@ import { IOption } from '../../interfaces/IOption'
  */
 interface IProps {
     options: IOption[]
+    onChange: (event: React.FormEvent<HTMLSelectElement>) => void
     value: string
 }
 
@@ -18,10 +19,10 @@ interface IProps {
  * Select component
  */
 const Select: React.FC<IProps> = props => {
-    const { options, value } = props
+    const { options, onChange, value } = props
 
     return (
-        <select>
+        <select onChange={event => onChange(event)}>
             {options.map((option: IOption, index: number) =>
                 value === option.value ? (
                     <option value={option.value} key={index} selected>
