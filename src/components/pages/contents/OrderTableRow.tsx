@@ -7,7 +7,12 @@ import * as React from 'react'
 import { IOrder } from '../../../interfaces/IOrder'
 import PriceText from '../../common/PriceText'
 import CancelOrderButton from './buttons/CancelOrderButton'
-import ChangeStatusButton from './buttons/ChangeStatusButton'
+import ConfirmDeliveryButton from './buttons/ConfirmDeliveryButton'
+import ConfirmIssueButton from './buttons/ConfirmIssueButton'
+import ConfirmOrderButton from './buttons/ConfirmOrderButton'
+import ConfirmPaymentButton from './buttons/ConfirmPaymentButton'
+import ConfirmTrackIdButton from './buttons/ConfirmTrackIdButton'
+import FinishOrderButton from './buttons/FinishOrderButton'
 import OrderDetailLink from './links/OrderDetailLink'
 import CoolText from './texts/CoolText'
 import DeliveryDateTimeText from './texts/DeliveryDateTimeText'
@@ -72,10 +77,39 @@ const OrderTableRow: React.FC<IProps> = props => {
                 />
             </td>
             <td>
-                <ChangeStatusButton
-                    status={orderStatus}
-                    setStatus={setOrderStatus}
-                />
+                {orderStatus === 0 ? (
+                    <ConfirmOrderButton
+                        orderId={order_id}
+                        setOrderStatus={setOrderStatus}
+                    />
+                ) : orderStatus === 1 ? (
+                    <ConfirmPaymentButton
+                        orderId={order_id}
+                        setOrderStatus={setOrderStatus}
+                    />
+                ) : orderStatus === 2 ? (
+                    delivery_date === '店頭引き取り' ? (
+                        <ConfirmIssueButton
+                            orderId={order_id}
+                            setOrderStatus={setOrderStatus}
+                        />
+                    ) : (
+                        <ConfirmTrackIdButton
+                            orderId={order_id}
+                            setOrderStatus={setOrderStatus}
+                        />
+                    )
+                ) : orderStatus === 3 ? (
+                    <ConfirmDeliveryButton
+                        orderId={order_id}
+                        setOrderStatus={setOrderStatus}
+                    />
+                ) : orderStatus === 4 ? (
+                    <FinishOrderButton
+                        orderId={order_id}
+                        setOrderStatus={setOrderStatus}
+                    />
+                ) : null}
             </td>
             <td>
                 <CancelOrderButton />
