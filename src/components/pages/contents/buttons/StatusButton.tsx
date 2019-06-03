@@ -29,7 +29,7 @@ const StatusButton: React.FC<IProps> = props => {
                 setOrderStatus(status)
 
                 HttpPost.send(
-                    '../order/index.php',
+                    './set_status.php',
                     {
                         action: 'update',
                         orderId,

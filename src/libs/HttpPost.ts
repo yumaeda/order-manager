@@ -1,18 +1,10 @@
-export const send = (
-    uri: string,
-    jsonBody: any,
-    callback: (res: any) => void
-) => {
+export const send = (uri: string, obj: any, callback: (res: any) => void) => {
+    const headers = { 'Content-Type': 'application/json' }
+    const body = JSON.stringify(obj)
     const method = 'POST'
-    const body = JSON.stringify(jsonBody)
-    const headers: { [key: string]: string } = {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-    }
+    const credentials = 'same-origin'
 
-    fetch(uri, { method, headers, body })
+    fetch(uri, { body, credentials, headers, method })
         .then(callback)
-        .catch(error => {
-            alert(error.stack)
-        })
+        .catch(error => alert(error.stack))
 }
