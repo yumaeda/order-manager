@@ -24,8 +24,8 @@ const ConfirmDeliveryButton: React.FC<IProps> = props => {
     const status = 4
 
     const handleStatusChange = (): boolean => {
-        HttpPost.send('../order/send_shipped_mail.php', { orderId }, () =>
-            alert('HO')
+        HttpPost.send('./send_shipped_mail.php', { orderId }, () =>
+            alert('SUCCESS!!')
         )
 
         return true

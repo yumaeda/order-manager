@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $requestBody = json_decode(file_get_contents('php://input'));
 if (!$requestBody ||
     !isset($requestBody->orderId) ||
-    !isset($requestBody->status)) {
+    !isset($requestBody->trackingId)) {
     exit('Invalid parameters.');
 }
 
@@ -17,8 +17,8 @@ require("$curDirPath/../../../includes/config.inc.php");
 require(MYSQL);
 
 $orderId = mysqli_real_escape_string($dbc, $requestBody->orderId);
-$status  = mysqli_real_escape_string($dbc, $requestBody->status);
-mysqli_query($dbc, "CALL set_order_status('$orderId', $status)");
+$trackingId = mysqli_real_escape_string($dbc, $requestBody->trackingId);
+mysqli_query($dbc, "CALL set_tracking_id('$orderId', '$trackingId')");
 mysqli_close($dbc);
 
 ?>

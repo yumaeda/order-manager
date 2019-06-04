@@ -24,10 +24,8 @@ const ConfirmPaymentButton: React.FC<IProps> = props => {
     const text = '支払済みにする'
 
     const handleStatusChange = (): boolean => {
-        HttpPost.send(
-            '../order/send_payment_confirmation_mail.php',
-            { orderId },
-            () => alert('SUCCESS')
+        HttpPost.send('./send_payment_confirmation_mail.php', { orderId }, () =>
+            alert('SUCCESS')
         )
 
         return true

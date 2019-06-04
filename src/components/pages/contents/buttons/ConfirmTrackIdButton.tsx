@@ -35,7 +35,7 @@ const ConfirmTradkIdButton: React.FC<IProps> = props => {
                 trackingId !== '0000-0000-0000'
             ) {
                 HttpPost.send(
-                    '../order/set_tracking_id.php',
+                    './set_tracking_id.php',
                     { orderId, trackingId },
                     () => alert('SUCCESS')
                 )

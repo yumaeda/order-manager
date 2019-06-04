@@ -34,4 +34,4 @@ const ConfirmIssueButton: React.FC<IProps> = props => {
     )
 }
 
-export default ConfirmIssueButton
+export default React.memo(ConfirmIssueButton)

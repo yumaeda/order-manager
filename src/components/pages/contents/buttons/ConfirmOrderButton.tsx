@@ -24,11 +24,9 @@ const ConfirmOrderButton: React.FC<IProps> = props => {
     const text = '注文を確定する'
 
     const handleStatusChange = (): boolean => {
-        HttpPost.send('../order/send_confirmed_mail.php', { orderId }, () => {
-            HttpPost.send(
-                '../order/record_purchased_items.php',
-                { orderId },
-                () => alert('SUCCESS')
+        HttpPost.send('./send_confirmed_mail.php', { orderId }, () => {
+            HttpPost.send('./record_purchased_items.php', { orderId }, () =>
+                alert('SUCCESS')
             )
         })
 

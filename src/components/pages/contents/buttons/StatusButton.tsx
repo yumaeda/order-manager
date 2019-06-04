@@ -31,7 +31,6 @@ const StatusButton: React.FC<IProps> = props => {
                 HttpPost.send(
                     './set_status.php',
                     {
-                        action: 'update',
                         orderId,
                         status
                     },

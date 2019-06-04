@@ -112,7 +112,7 @@ const OrderTableRow: React.FC<IProps> = props => {
                 ) : null}
             </td>
             <td>
-                <CancelOrderButton />
+                <CancelOrderButton orderId={order_id} />
             </td>
         </tr>
     )
