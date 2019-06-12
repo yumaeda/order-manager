@@ -11,13 +11,14 @@ import WineTableRow from './WineTableRow'
  */
 interface IProps {
     contents: string
+    setOrderContents: (contents: string) => void
 }
 
 /**
  * OrderedWineTable component
  */
 const OrderedWineTable: React.FC<IProps> = props => {
-    const { contents } = props
+    const { contents, setOrderContents } = props
     const tokens = contents.split(';')
 
     return (
@@ -29,7 +30,12 @@ const OrderedWineTable: React.FC<IProps> = props => {
                     const qty = subTokens[1]
 
                     return subTokens.length === 2 ? (
-                        <WineTableRow code={code} qty={qty} />
+                        <WineTableRow
+                            code={code}
+                            contents={contents}
+                            qty={qty}
+                            setOrderContents={setOrderContents}
+                        />
                     ) : null
                 })}
             </tbody>

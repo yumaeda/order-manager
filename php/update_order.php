@@ -1,18 +1,25 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    exit('Only POST is supported!');
+    exit('Only POST is supported.');
 }
 
-if (empty($_POST['order_id']) ||
-    empty($_POST['delivery_date']) ||
-    empty($_POST['delivery_time']) ||
-    empty($_POST['order_contents']) ||
-    empty($_POST['transaction_id']) ||
-    empty($_POST['transaction_id2']) ||
-    !isset($_POST['payment_method']) ||
-    !isset($_POST['member_discount'])) {
+$requestBody = json_decode(file_get_contents('php://input'));
+if (!$requestBody ||
+    !isset($requestBody->orderId) ||
+    !isset($requestBody->deliveryDate) ||
+    !isset($requestBody->deliveryTime) ||
+    !isset($requestBody->orderContents) ||
+    !isset($requestBody->trackingCode1) ||
+    !isset($requestBody->trackingCode2) ||
+    !isset($requestBody->paymentMethod) ||
+    !isset($requestBody->memberDiscount)) {
     exit('Parameters are not set properly!');
 }
+
+$curDirPath = dirname(__FILE__);
+require_once("$curDirPath/../defines.php");
+require("$curDirPath/../../../includes/config.inc.php");
+require(MYSQL);
 
 function getTotalPrice($dbc, $contents, $fMember) {
     $total = 0;
@@ -23,6 +30,7 @@ function getTotalPrice($dbc, $contents, $fMember) {
         $code = $subTokens[0];
         $qty  = $subTokens[1];
         
+        prepareNextQuery($dbc);
         if (($code < 50000) || ($code >= 100000)) {
             $result = mysqli_query($dbc, "CALL get_wine('$code')");
             if ($result !== FALSE) {
@@ -43,21 +51,17 @@ function getTransactionId($dbc, $id) {
     return (strlen($escapedId) !== 14) ? '0000-0000-0000' : $escapedId;
 }
 
-$curDirPath = dirname(__FILE__);
-require("$curDirPath/../../defines.php");
-require_once("$curDirPath/../../../../includes/config.inc.php");
-require(MYSQL);
-
-$orderId        = mysqli_real_escape_string ($dbc, $_POST['order_id']);
-$paymentMethod  = intval(mysqli_real_escape_string ($dbc, $_POST['payment_method']));
-$deliveryDate   = mysqli_real_escape_string ($dbc, $_POST['delivery_date']);
-$deliveryTime   = mysqli_real_escape_string ($dbc, $_POST['delivery_time']);
-$orderContents  = mysqli_real_escape_string ($dbc, $_POST['order_contents']);
-$transactionId  = getTransactionId($dbc, $_POST['transaction_id']);
-$transactionId2 = getTransactionId($dbc, $_POST['transaction_id2']);
-$fMember        = intval(mysqli_real_escape_string ($dbc, $_POST['member_discount']));
+$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId);
+$paymentMethod  = intval($requestBody->paymentMethod);
+$deliveryDate   = mysqli_real_escape_string($dbc, $requestBody->deliveryDate);
+$deliveryTime   = mysqli_real_escape_string($dbc, $requestBody->deliveryTime);
+$orderContents  = mysqli_real_escape_string($dbc, $requestBody->orderContents);
+$transactionId  = getTransactionId($dbc, $requestBody->trackingCode1);
+$transactionId2 = getTransactionId($dbc, $requestBody->trackingCode2);
+$fMember        = intval($requestBody->memberDiscount);
 $wineTotal      = getTotalPrice($dbc, $orderContents, $fMember);
 
+prepareNextQuery($dbc);
 if (mysqli_query($dbc, "CALL set_shipping_datetime('$orderId', '$deliveryDate', '$deliveryTime')") !== FALSE) {
     prepareNextQuery($dbc);
     if (mysqli_query($dbc, "CALL set_payment_method('$orderId', $paymentMethod)") !== FALSE) {

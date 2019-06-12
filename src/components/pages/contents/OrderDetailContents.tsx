@@ -22,6 +22,7 @@ interface IProps {
     name: string
     deliveryDate: string
     deliveryTime: string
+    setOrderContents: (contents: string) => void
     handleChangeDeliveryDate: (event: React.FormEvent<HTMLInputElement>) => void
     handleChangeDeliveryTime: (
         event: React.FormEvent<HTMLSelectElement>
@@ -56,6 +57,7 @@ const OrderDetailContents: React.FC<IProps> = props => {
         name,
         deliveryDate,
         deliveryTime,
+        setOrderContents,
         handleChangeDeliveryDate,
         handleChangeDeliveryTime,
         handleChangePaymentMethod,
@@ -73,7 +75,10 @@ const OrderDetailContents: React.FC<IProps> = props => {
     return (
         <FieldContainer>
             <Field label="購入ワイン">
-                <OrderedWineTable contents={contents} />
+                <OrderedWineTable
+                    contents={contents}
+                    setOrderContents={setOrderContents}
+                />
             </Field>
             <Field label="会員価格">
                 <span id="memberPriceText">

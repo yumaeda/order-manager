@@ -12,6 +12,8 @@ import { defaultWine } from '../../../states'
  */
 interface IProps {
     code: string
+    contents: string
+    setOrderContents: (contents: string) => void
     qty: string
 }
 
@@ -19,8 +21,9 @@ interface IProps {
  * WineTableRow component
  */
 const WineTableRow: React.FC<IProps> = props => {
-    const { code, qty } = props
+    const { code, contents, qty, setOrderContents } = props
     const [wine, setWine] = React.useState<IWine>(defaultWine)
+    const [wineCode, setWineCode] = React.useState(code)
 
     React.useEffect(() => {
         const baseUri = '//anyway-grapes.jp/laravel5.3/public/api/v1/wines'
@@ -36,13 +39,23 @@ const WineTableRow: React.FC<IProps> = props => {
             })
     }, [])
 
+    const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+        const nextCode = event.currentTarget.value
+        setWineCode(nextCode)
+
+        const prevToken = `${code}#${qty}`
+        const nextToken = `${nextCode}#${qty}`
+        setOrderContents(contents.replace(prevToken, nextToken))
+    }
+
     return (
         <tr key={wine.barcode_number}>
             <td>
                 <input
                     type="text"
-                    value={wine.barcode_number}
+                    value={wineCode}
                     className="wine_code"
+                    onChange={handleChange}
                 />
             </td>
             <td>{wine.vintage}</td>

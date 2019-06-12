@@ -5,6 +5,7 @@
  */
 import * as React from 'react'
 import { IOrder } from '../../../interfaces/IOrder'
+import * as HttpPost from '../../../libs/HttpPost'
 import OrderDetailContents from './OrderDetailContents'
 import OrderDetailFooter from './OrderDetailFooter'
 import OrderDetailHeader from './OrderDetailHeader'
@@ -47,6 +48,7 @@ const OrderDetail: React.FC<IProps> = props => {
         wine_total
     } = props
 
+    const [orderContents, setOrderContents] = React.useState(contents)
     const [deliveryDate, setDeliveryDate] = React.useState(delivery_date)
     const [deliveryTime, setDeliveryTime] = React.useState(delivery_time)
     const [paymentMethod, setPaymentMethod] = React.useState(payment_method)
@@ -84,11 +86,18 @@ const OrderDetail: React.FC<IProps> = props => {
     }
 
     const handleSubmit = () => {
-        alert(`DeliveryDate: ${deliveryDate}`)
-        alert(`DeliveryTime: ${deliveryTime}`)
-        alert(`PaymentMethod: ${paymentMethod}`)
-        alert(`TrackingCode1: ${trackingCode1}`)
-        alert(`TrackingCode2: ${trackingCode2}`)
+        const param = {
+            deliveryDate,
+            deliveryTime,
+            memberDiscount: member_discount,
+            orderContents,
+            orderId: order_id,
+            paymentMethod,
+            trackingCode1,
+            trackingCode2
+        }
+
+        HttpPost.send('./update_order.php', param, () => location.reload(true))
     }
 
     return (
@@ -106,7 +115,8 @@ const OrderDetail: React.FC<IProps> = props => {
             <OrderDetailContents
                 address={address}
                 comment={comment}
-                contents={contents}
+                contents={orderContents}
+                setOrderContents={setOrderContents}
                 fee={fee}
                 name={name}
                 deliveryDate={deliveryDate}
