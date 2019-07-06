@@ -97,7 +97,7 @@ const OrderDetail: React.FC<IProps> = props => {
             trackingCode2
         }
 
-        HttpPost.send('./update_order.php', param, () => location.reload(true))
+        HttpPost.send('./update_order.php', param, () => location.reload())
     }
 
     return (

@@ -35,6 +35,7 @@ const OrderTableRow: React.FC<IProps> = props => {
     const { order, openModal, selectOrder, taxRate } = props
     const {
         address,
+        contents,
         customer_name,
         order_id,
         refrigerated,
@@ -47,6 +48,17 @@ const OrderTableRow: React.FC<IProps> = props => {
         phone
     } = order
     const [orderStatus, setOrderStatus] = React.useState(status)
+
+    const containsPreOrderItem = (orderContents: string): boolean => {
+        const tokens = orderContents.split(';')
+
+        return tokens.some((token: string) => {
+            const subTokens = token.split('#')
+            const code = parseInt(subTokens[0], 10)
+
+            return subTokens.length === 2 && code >= 100000
+        })
+    }
 
     return (
         <tr id={order_id} className="order__column" key={order_id}>
@@ -77,7 +89,7 @@ const OrderTableRow: React.FC<IProps> = props => {
                 />
             </td>
             <td>
-                {orderStatus === 0 ? (
+                {containsPreOrderItem(contents) ? null : orderStatus === 0 ? (
                     <ConfirmOrderButton
                         orderId={order_id}
                         setOrderStatus={setOrderStatus}
