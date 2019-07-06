@@ -1,3 +1,18 @@
+<?php
+
+$curDirPath = dirname(__FILE__);
+
+// If DB sync is already running, terminate the script.
+$dbSyncStatusFilePath = "$curDirPath/../../../syncStatus.txt";
+$dbSyncStatus         = file_get_contents($dbSyncStatusFilePath);
+if ($dbSyncStatus == '1')
+{
+    header('Content-type: text/html; charset=utf-8');
+    exit('只今同期中です。5分程お待ちください。');
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
