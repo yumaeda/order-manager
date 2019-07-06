@@ -4,6 +4,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import WineSetTableRow from './WineSetTableRow'
 import WineTableRow from './WineTableRow'
 
 /**
@@ -26,16 +27,20 @@ const OrderedWineTable: React.FC<IProps> = props => {
             <tbody className="wine__table__body">
                 {tokens.map((token: string) => {
                     const subTokens = token.split('#')
-                    const code = subTokens[0]
+                    const code = parseInt(subTokens[0], 10)
                     const qty = subTokens[1]
 
                     return subTokens.length === 2 ? (
-                        <WineTableRow
-                            code={code}
-                            contents={contents}
-                            qty={qty}
-                            setOrderContents={setOrderContents}
-                        />
+                        code < 50000 || code >= 100000 ? (
+                            <WineTableRow
+                                code={subTokens[0]}
+                                contents={contents}
+                                qty={qty}
+                                setOrderContents={setOrderContents}
+                            />
+                        ) : (
+                            <WineSetTableRow code={code} qty={qty} />
+                        )
                     ) : null
                 })}
             </tbody>

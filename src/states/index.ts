@@ -3,6 +3,7 @@
  */
 import { IOrder } from '../interfaces/IOrder'
 import { IWine } from '../interfaces/IWine'
+import { IWineSet } from '../interfaces/IWineSet'
 
 /**
  * Default wine
@@ -37,6 +38,17 @@ export const defaultWine: IWine = {
     village: '',
     village_jpn: '',
     vintage: ''
+}
+
+/**
+ * Default wine set
+ */
+export const defaultWineSet: IWineSet = {
+    comment: '',
+    discount_rate: 0.0,
+    id: 0,
+    name: '',
+    type: 0
 }
 
 /**

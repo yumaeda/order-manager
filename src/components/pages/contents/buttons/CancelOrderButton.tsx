@@ -22,7 +22,7 @@ const CancelOrderButton: React.FC<IProps> = props => {
     const handleClick = () => {
         if (confirm('!!WARNING!! Are you sure to cancel the order?')) {
             HttpPost.send('./remove_order.php', { orderId }, () =>
-                alert('Order is cancelled!!')
+                alert('Order is cancelled.')
             )
         }
     }
