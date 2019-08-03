@@ -72,7 +72,7 @@ const OrderTableRow: React.FC<IProps> = props => {
                     setOrder={selectOrder}
                 />
             </td>
-            <td>{`${customer_name}様`}</td>
+            <td>{customer_name}</td>
             <td>
                 <PriceText amount={wine_total} fee={fee} taxRate={taxRate} />
             </td>

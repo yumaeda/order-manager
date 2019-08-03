@@ -35,6 +35,7 @@ const OrderDetail: React.FC<IProps> = props => {
         customer_name,
         customer_phone,
         customer_phonetic,
+        delivery_company,
         delivery_date,
         delivery_time,
         member_discount,
@@ -102,23 +103,19 @@ const OrderDetail: React.FC<IProps> = props => {
 
     return (
         <>
-            <OrderDetailHeader
-                orderId={order_id}
-                address={customer_address}
-                email={customer_email}
-                name={customer_name}
-                phone={customer_phone}
-                phonetic={customer_phonetic}
-                postCode={post_code}
-                refrigerated={refrigerated}
-            />
+            <OrderDetailHeader orderId={order_id} refrigerated={refrigerated} />
             <OrderDetailContents
                 address={address}
                 comment={comment}
                 contents={orderContents}
+                email={customer_email}
+                customer_address={customer_address}
+                customer_name={customer_name}
+                customer_phone={customer_phone}
                 setOrderContents={setOrderContents}
                 fee={fee}
                 name={name}
+                deliveryCompany={delivery_company}
                 deliveryDate={deliveryDate}
                 handleChangeDeliveryDate={handleChangeDeliveryDate}
                 deliveryTime={deliveryTime}
@@ -127,6 +124,8 @@ const OrderDetail: React.FC<IProps> = props => {
                 paymentMethod={paymentMethod}
                 handleChangePaymentMethod={handleChangePaymentMethod}
                 phone={phone}
+                phonetic={customer_phonetic}
+                post_code={post_code}
                 taxRate={taxRate}
                 trackingCode1={trackingCode1}
                 handleChangeTrackingCode1={handleChangeTrackingCode1}

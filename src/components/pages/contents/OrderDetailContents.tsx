@@ -18,8 +18,13 @@ interface IProps {
     address: string
     comment: string
     contents: string
+    customer_address: string
+    customer_name: string
+    customer_phone: string
+    email: string
     fee: number
     name: string
+    deliveryCompany: string
     deliveryDate: string
     deliveryTime: string
     setOrderContents: (contents: string) => void
@@ -39,6 +44,8 @@ interface IProps {
     memberDiscount: number
     paymentMethod: number
     phone: string
+    phonetic: string
+    post_code: string
     taxRate: number
     trackingCode1: string
     trackingCode2: string
@@ -53,8 +60,13 @@ const OrderDetailContents: React.FC<IProps> = props => {
         address,
         comment,
         contents,
+        customer_address,
+        customer_name,
+        customer_phone,
+        email,
         fee,
         name,
+        deliveryCompany,
         deliveryDate,
         deliveryTime,
         setOrderContents,
@@ -66,6 +78,8 @@ const OrderDetailContents: React.FC<IProps> = props => {
         memberDiscount,
         paymentMethod,
         phone,
+        phonetic,
+        post_code,
         taxRate,
         trackingCode1,
         trackingCode2,
@@ -74,6 +88,21 @@ const OrderDetailContents: React.FC<IProps> = props => {
 
     return (
         <FieldContainer>
+            <ruby className="customer_name">
+                {customer_name}
+                <rp>{'('}</rp>
+                <rt>{phonetic}</rt>
+                <rp>{')'}</rp>
+            </ruby>
+            <div>
+                <a className="text--size-small" href={`mailto:${email}`}>
+                    {email}
+                </a>
+                <br />
+                <span className="text--size-small">{`Tel: ${customer_phone}`}</span>
+                <br />
+                <span className="text--size-small">{`〒${customer_address}`}</span>
+            </div>
             <Field label="購入ワイン">
                 <OrderedWineTable
                     contents={contents}
@@ -95,14 +124,14 @@ const OrderDetailContents: React.FC<IProps> = props => {
                 />
             </Field>
             <Field label="配送業者">
-                <span>ヤマト運輸</span>
+                <span>{deliveryCompany}</span>
             </Field>
             <Field label="配送先">
-                <span>{`${name}様`}</span>
+                <span>{name}</span>
                 <br />
                 <span>{`Tel: ${phone}`}</span>
                 <br />
-                <span>{`〒${address}`}</span>
+                <span>{`〒${post_code} ${address}`}</span>
             </Field>
             <Field label="配送希望時間">
                 <input
