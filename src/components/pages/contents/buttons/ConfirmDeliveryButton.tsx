@@ -25,7 +25,7 @@ const ConfirmDeliveryButton: React.FC<IProps> = props => {
 
     const handleStatusChange = (): boolean => {
         HttpPost.send('./send_shipped_mail.php', { orderId }, () =>
-            alert('SUCCESS!!')
+            alert('発送済みメールが送信されました。')
         )
 
         return true

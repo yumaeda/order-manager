@@ -25,7 +25,7 @@ const FinishOrderButton: React.FC<IProps> = props => {
 
     const handleStatusChange = (): boolean => {
         HttpPost.send('../order/send_aftercare_mail.php', { orderId }, () =>
-            alert('SUCCESS')
+            alert('アフターケアのメールが送信されました。')
         )
 
         return true

@@ -5,8 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $requestBody = json_decode(file_get_contents('php://input'));
-if (!$requestBody ||
-    !isset($requestBody->orderId) ||
+if (!$requestBody || !isset($requestBody->orderId)) {
     exit('Invalid parameters.');
 }
 

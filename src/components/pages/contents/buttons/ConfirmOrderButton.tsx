@@ -26,7 +26,7 @@ const ConfirmOrderButton: React.FC<IProps> = props => {
     const handleStatusChange = (): boolean => {
         HttpPost.send('./send_confirmed_mail.php', { orderId }, () => {
             HttpPost.send('./record_purchased_items.php', { orderId }, () =>
-                alert('SUCCESS')
+                alert('注文確認メールが送信されました。')
             )
         })
 

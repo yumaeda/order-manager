@@ -37,7 +37,7 @@ const ConfirmTradkIdButton: React.FC<IProps> = props => {
                 HttpPost.send(
                     './set_tracking_id.php',
                     { orderId, trackingId },
-                    () => alert('SUCCESS')
+                    () => alert('送り状番号がセットされました。')
                 )
 
                 return true
