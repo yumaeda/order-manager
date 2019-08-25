@@ -46,6 +46,7 @@ interface IProps {
     phone: string
     phonetic: string
     post_code: string
+    prefecture: string
     taxRate: number
     trackingCode1: string
     trackingCode2: string
@@ -80,6 +81,7 @@ const OrderDetailContents: React.FC<IProps> = props => {
         phone,
         phonetic,
         post_code,
+        prefecture,
         taxRate,
         trackingCode1,
         trackingCode2,
@@ -131,7 +133,7 @@ const OrderDetailContents: React.FC<IProps> = props => {
                 <br />
                 <span>{`Tel: ${phone}`}</span>
                 <br />
-                <span>{`〒${post_code} ${address}`}</span>
+                <span>{`〒${post_code} ${prefecture}${address}`}</span>
             </Field>
             <Field label="配送希望時間">
                 <input

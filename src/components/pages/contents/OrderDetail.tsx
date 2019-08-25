@@ -42,6 +42,7 @@ const OrderDetail: React.FC<IProps> = props => {
         payment_method,
         phone,
         post_code,
+        prefecture,
         refrigerated,
         taxRate,
         transaction_id,
@@ -126,6 +127,7 @@ const OrderDetail: React.FC<IProps> = props => {
                 phone={phone}
                 phonetic={customer_phonetic}
                 post_code={post_code}
+                prefecture={prefecture}
                 taxRate={taxRate}
                 trackingCode1={trackingCode1}
                 handleChangeTrackingCode1={handleChangeTrackingCode1}
