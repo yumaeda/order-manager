@@ -1,7 +1,7 @@
 {
-  "name": "anyway-admin-react",
+  "name": "order-mgr-front",
   "version": "1.0.0",
-  "description": "Anyway Admin Repository by React",
+  "description": "Order Manager Frontend",
   "main": "index.js",
   "scripts": {
     "build": "webpack --env dev --progress --profile --colors",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yumaeda/anyway-admin-react.git"
+    "url": "git+https://github.com/yumaeda/order-mgr-front.git"
   },
   "prettier": {
     "trailingComma": "none",
@@ -32,9 +32,9 @@
   "author": "Yukitaka Maeda",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yumaeda/anyway-admin-react/issues"
+    "url": "https://github.com/yumaeda/order-mgr-front/issues"
   },
-  "homepage": "https://github.com/yumaeda/anyway-admin-react#readme",
+  "homepage": "https://github.com/yumaeda/order-mgr-front#readme",
   "dependencies": {
     "moment": "^2.24.0",
     "react": "^16.8.2",
