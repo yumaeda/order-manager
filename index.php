@@ -25,4 +25,4 @@ if ($dbSyncStatus == '1')
         <div id="modal"></div>
     </body>
 </html>
-<script src="./dist/bundle.js"></script>
+<script src="./dist/bundle.js?t=20190917"></script>

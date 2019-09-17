@@ -41,11 +41,17 @@ const WineTableRow: React.FC<IProps> = props => {
 
     const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
         const nextCode = event.currentTarget.value
-        setWineCode(nextCode)
-
-        const prevToken = `${code}#${qty}`
-        const nextToken = `${nextCode}#${qty}`
-        setOrderContents(contents.replace(prevToken, nextToken))
+        if (
+            parseInt(nextCode, 10) < 50000 ||
+            parseInt(nextCode, 10) >= 100000
+        ) {
+            setWineCode(nextCode)
+            const prevToken = `${code}#${qty}`
+            const nextToken = `${nextCode}#${qty}`
+            setOrderContents(contents.replace(prevToken, nextToken))
+        } else {
+            alert(`[#${nextCode}] is not a valid wine code!!`)
+        }
     }
 
     return (
