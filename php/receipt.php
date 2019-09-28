@@ -24,7 +24,7 @@ function getOrderedDate($orderId)
 function getCoolFee($row)
 {
     $fCool      = ($row['refrigerated'] == 1);
-    $cMaxBottle = (($row['delivery_company'] == 'ヤマト運輸') ? 8 : 12);
+    $cMaxBottle = (($row['delivery_company'] == 'ヤマト運輸') ? 9 : 12);
     $intFee     = ($row['refrigerated'] == 1) ? 300 : 0;
 
     $cItem     = 0;
