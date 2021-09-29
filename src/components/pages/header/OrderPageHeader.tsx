@@ -10,7 +10,7 @@ import * as React from 'react'
  */
 const OrderPageHeader: React.FC = () => (
     <header>
-        <a href="http://sei-ya.jp/admin_home.html">
+        <a href="https://anyway-grapes.jp/admin_home.html">
             <img
                 className="home__button"
                 src="//anyway-grapes.jp/images/adminHome.png"
