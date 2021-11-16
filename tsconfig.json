@@ -3,7 +3,7 @@
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "lib": [ "dom", "es6" ],
-        "outDir": "./dist/",
+        "outDir": "./",
         "sourceMap": true,
         "strict": true,
         "noImplicitAny": true,

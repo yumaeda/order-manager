@@ -18,11 +18,11 @@ if ($dbSyncStatus == '1')
     <head>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
         <title>注文の管理｜Anyway-Grapes</title>
-        <link rel="stylesheet" type="text/css" href="./dist/index.css">
+        <link rel="stylesheet" type="text/css" href="./main.css">
     </head>
     <body class="body">
         <div id="root"></div>
         <div id="modal"></div>
     </body>
 </html>
-<script src="./dist/bundle.js?t=20190917"></script>
+<script src="./index.min.js?t=20211116"></script>

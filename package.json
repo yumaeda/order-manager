@@ -1,70 +1,55 @@
 {
-  "name": "order-mgr-front",
-  "version": "1.0.0",
-  "description": "Order Manager Frontend",
+  "name": "order-manager",
+  "version": "1.0.1",
+  "description": "Order Manager",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --env dev --progress --profile --colors",
-    "build:prod": "webpack --env prod --progress --profile --colors",
-    "fix": "prettier --write 'src/**/*.{ts,tsx}' & tslint --fix 'src/**/*.{ts,tsx}'",
-    "start": "node server.js & webpack-dev-server --inline --hot --no-info --env dev"
+    "build": "webpack --progress --profile",
+    "lint": "npx eslint --ext .tsx,.ts src/ --fix",
+    "start": "webpack serve"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yumaeda/order-mgr-front.git"
-  },
-  "prettier": {
-    "trailingComma": "none",
-    "tabWidth": 4,
-    "semi": false,
-    "singleQuote": true
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "tslint --fix",
-      "prettier --write",
-      "git add"
-    ]
+    "url": "git+https://github.com/yumaeda/order-manager.git"
   },
   "keywords": [
-    "react"
+    "order"
   ],
   "author": "Yukitaka Maeda",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yumaeda/order-mgr-front/issues"
+    "url": "https://github.com/yumaeda/order-manager/issues"
   },
-  "homepage": "https://github.com/yumaeda/order-mgr-front#readme",
+  "homepage": "https://github.com/yumaeda/order-manager#readme",
   "dependencies": {
-    "moment": "^2.24.0",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-modal": "^3.8.1"
+    "moment": "^2.29.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-modal": "^3.14.4",
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@types/react": "^16.8.19",
-    "@types/react-dom": "^16.8.2",
-    "@types/react-modal": "^3.8.2",
-    "css-loader": "^2.1.1",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "json-server": "^0.14.0",
-    "lint-staged": "^8.1.0",
-    "node-sass": "^4.10.0",
-    "prettier": "^1.15.3",
-    "sass-loader": "^7.0.3",
-    "source-map-loader": "^0.2.4",
-    "style-loader": "^0.21.0",
-    "ts-jest": "^23.10.5",
-    "ts-loader": "^5.3.1",
-    "tslint": "^5.17.0",
-    "tslint-config-prettier": "^1.17.0",
-    "tslint-config-standard": "^8.0.1",
-    "tslint-plugin-prettier": "^2.0.1",
-    "tslint-react-hooks": "^1.1.0",
-    "tslint-webpack-plugin": "^1.3.0",
-    "typescript": "^3.5.1",
-    "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.5.0"
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-modal": "^3.13.1",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "css-loader": "^6.5.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "^19.0.0",
+    "eslint-import-resolver-webpack": "^0.13.2",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "mini-css-extract-plugin": "^2.4.3",
+    "sass": "^1.43.4",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.4.3",
+    "webpack": "^5.55.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.3.0"
   }
 }
