@@ -17,21 +17,21 @@ interface IProps {
 /**
  * ConfirmIssueButton component
  */
-const ConfirmIssueButton: React.FC<IProps> = props => {
-    const { orderId, setOrderStatus } = props
-    const status = 3
-    const text = '出庫済みにする'
-    const handleStatusChange = () => true
+const ConfirmIssueButton: React.FC<IProps> = (props) => {
+  const { orderId, setOrderStatus } = props
+  const status = 3
+  const text = '出庫済みにする'
+  const handleStatusChange = () => true
 
-    return (
-        <StatusButton
-            orderId={orderId}
-            text={text}
-            handleStatusChange={handleStatusChange}
-            setOrderStatus={setOrderStatus}
-            status={status}
-        />
-    )
+  return (
+    <StatusButton
+      orderId={orderId}
+      text={text}
+      handleStatusChange={handleStatusChange}
+      setOrderStatus={setOrderStatus}
+      status={status}
+    />
+  )
 }
 
 export default React.memo(ConfirmIssueButton)

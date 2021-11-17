@@ -16,15 +16,15 @@ interface IProps {
 /**
  * OrderDetailFooter component
  */
-const OrderDetailFooter: React.FC<IProps> = props => {
-    const { closeModal, updateInfo } = props
+const OrderDetailFooter: React.FC<IProps> = (props) => {
+  const { closeModal, updateInfo } = props
 
-    return (
-        <div>
-            <input type="button" onClick={() => closeModal()} value="閉じる" />
-            <input type="button" onClick={() => updateInfo()} value="更新" />
-        </div>
-    )
+  return (
+    <div>
+      <input type="button" onClick={() => closeModal()} value="閉じる" />
+      <input type="button" onClick={() => updateInfo()} value="更新" />
+    </div>
+  )
 }
 
 export default React.memo(OrderDetailFooter)

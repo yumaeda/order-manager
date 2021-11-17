@@ -16,15 +16,15 @@ interface IProps {
 /**
  * Field component
  */
-const Field: React.FC<IProps> = props => {
-    const { children, label } = props
+const Field: React.FC<IProps> = (props) => {
+  const { children, label } = props
 
-    return (
-        <div className="field">
-            <label className="field__label">{label}</label>
-            <div className="field__input">{children}</div>
-        </div>
-    )
+  return (
+    <div className="field">
+      <label className="field__label">{label}</label>
+      <div className="field__input">{children}</div>
+    </div>
+  )
 }
 
 export default React.memo(Field)

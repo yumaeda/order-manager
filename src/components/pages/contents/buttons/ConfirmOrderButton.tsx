@@ -4,7 +4,8 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import * as HttpPost from '../../../../libs/HttpPost'
+import API_BASE_URI from '../../../../const/Global'
+import send from '../../../../libs/HttpPost'
 import StatusButton from './StatusButton'
 
 /**
@@ -18,30 +19,28 @@ interface IProps {
 /**
  * ConfirmOrderButton component
  */
-const ConfirmOrderButton: React.FC<IProps> = props => {
-    const { orderId, setOrderStatus } = props
-    const status = 1
-    const text = '注文を確定する'
+const ConfirmOrderButton: React.FC<IProps> = (props) => {
+  const { orderId, setOrderStatus } = props
+  const status = 1
+  const text = '注文を確定する'
 
-    const handleStatusChange = (): boolean => {
-        HttpPost.send('./send_confirmed_mail.php', { orderId }, () => {
-            HttpPost.send('./record_purchased_items.php', { orderId }, () =>
-                alert('注文確認メールが送信されました。')
-            )
-        })
+  const handleStatusChange = (): boolean => {
+    send(`${API_BASE_URI}/send_confirmed_mail.php`, { orderId }, () => {
+      send(`${API_BASE_URI}/record_purchased_items.php`, { orderId }, () => alert('注文確認メールが送信されました。'))
+    })
 
-        return true
-    }
+    return true
+  }
 
-    return (
-        <StatusButton
-            orderId={orderId}
-            text={text}
-            handleStatusChange={handleStatusChange}
-            setOrderStatus={setOrderStatus}
-            status={status}
-        />
-    )
+  return (
+    <StatusButton
+      orderId={orderId}
+      text={text}
+      handleStatusChange={handleStatusChange}
+      setOrderStatus={setOrderStatus}
+      status={status}
+    />
+  )
 }
 
 export default React.memo(ConfirmOrderButton)

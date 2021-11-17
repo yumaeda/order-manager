@@ -15,10 +15,10 @@ interface IProps {
 /**
  * FieldContainer component
  */
-const FieldContainer: React.FC<IProps> = props => {
-    const { children } = props
+const FieldContainer: React.FC<IProps> = (props) => {
+  const { children } = props
 
-    return <div className="field__container">{children}</div>
+  return <div className="field__container">{children}</div>
 }
 
 export default React.memo(FieldContainer)

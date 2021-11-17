@@ -11,9 +11,9 @@ import Select from '../../../common/Select'
  * Payment method options
  */
 const options: IOption[] = [
-    { text: '未定', value: '0' },
-    { text: 'クレジットカード', value: '1' },
-    { text: '銀行振り込み', value: '2' }
+  { text: '未定', value: '0' },
+  { text: 'クレジットカード', value: '1' },
+  { text: '銀行振り込み', value: '2' }
 ]
 
 /**
@@ -27,10 +27,10 @@ interface IProps {
 /**
  * PaymentSelect component
  */
-const PaymentSelect: React.FC<IProps> = props => {
-    const { onChange, value } = props
+const PaymentSelect: React.FC<IProps> = (props) => {
+  const { onChange, value } = props
 
-    return <Select options={options} value={value} onChange={onChange} />
+  return <Select options={options} value={value} onChange={onChange} />
 }
 
 export default React.memo(PaymentSelect)

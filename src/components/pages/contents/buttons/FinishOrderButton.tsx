@@ -4,7 +4,8 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import * as HttpPost from '../../../../libs/HttpPost'
+import API_BASE_URI from '../../../../const/Global'
+import send from '../../../../libs/HttpPost'
 import StatusButton from './StatusButton'
 
 /**
@@ -18,28 +19,26 @@ interface IProps {
 /**
  * FinishOrderButton component
  */
-const FinishOrderButton: React.FC<IProps> = props => {
-    const { orderId, setOrderStatus } = props
-    const status = 5
-    const text = '完了する'
+const FinishOrderButton: React.FC<IProps> = (props) => {
+  const { orderId, setOrderStatus } = props
+  const status = 5
+  const text = '完了する'
 
-    const handleStatusChange = (): boolean => {
-        HttpPost.send('../order/send_aftercare_mail.php', { orderId }, () =>
-            location.reload()
-        )
+  const handleStatusChange = (): boolean => {
+    send(`${API_BASE_URI}/send_aftercare_mail.php`, { orderId }, () => location.reload())
 
-        return true
-    }
+    return true
+  }
 
-    return (
-        <StatusButton
-            orderId={orderId}
-            handleStatusChange={handleStatusChange}
-            text={text}
-            setOrderStatus={setOrderStatus}
-            status={status}
-        />
-    )
+  return (
+    <StatusButton
+      orderId={orderId}
+      handleStatusChange={handleStatusChange}
+      text={text}
+      setOrderStatus={setOrderStatus}
+      status={status}
+    />
+  )
 }
 
 export default React.memo(FinishOrderButton)

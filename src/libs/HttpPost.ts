@@ -1,10 +1,36 @@
-export const send = (uri: string, obj: any, callback: (res: any) => void) => {
-    const headers = { 'Content-Type': 'application/json' }
-    const body = JSON.stringify(obj)
-    const method = 'POST'
-    const credentials = 'same-origin'
+import API_BASE_URI from '../const/Global'
 
-    fetch(uri, { body, credentials, headers, method })
-        .then(callback)
-        .catch(error => alert(error.stack))
+const send = (
+  uri: string,
+  obj: any,
+  onSuccess: () => void
+) => {
+  const method = 'POST'
+  const headers = {
+    'Content-Type': 'application/json'
+  }
+
+  fetch(uri, {
+    method,
+    headers,
+    body: JSON.stringify(obj),
+    credentials: 'include'
+  })
+    .then((response: any) => response.json())
+    .then((json: string) => {
+      console.log(json)
+      onSuccess()
+    })
+    .catch((error: Error) => {
+      fetch(`${API_BASE_URI}/send_error.php`, {
+        method,
+        headers,
+        body: JSON.stringify({
+          errorMessage: `Error: ${error.message}, Stack: ${error.stack}`
+        }),
+        credentials: 'include'
+      })
+    })
 }
+
+export default send

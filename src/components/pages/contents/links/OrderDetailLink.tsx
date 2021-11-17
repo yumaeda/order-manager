@@ -18,31 +18,31 @@ interface IProps {
 /**
  * OrderDetailLink component
  */
-const OrderDetailLink: React.FC<IProps> = props => {
-    const { openOrderDetail, order, setOrder } = props
-    const trackingId = order.transaction_id
+const OrderDetailLink: React.FC<IProps> = (props) => {
+  const { openOrderDetail, order, setOrder } = props
+  const trackingId = order.transaction_id
 
-    let text = order.order_id
-    if (
-        trackingId &&
-        trackingId !== 'xxxxxxxx' &&
-        trackingId !== '0000-0000-0000'
-    ) {
-        text = `[Tracking #] ${trackingId}`
-    }
+  let text = order.order_id
+  if (
+    trackingId
+        && trackingId !== 'xxxxxxxx'
+        && trackingId !== '0000-0000-0000'
+  ) {
+    text = `[Tracking #] ${trackingId}`
+  }
 
-    return (
-        <a
-            href="#"
-            onClick={() => {
-                setOrder(order)
-                openOrderDetail()
-                return false
-            }}
-        >
-            {text}
-        </a>
-    )
+  return (
+    <a
+      href="#"
+      onClick={() => {
+        setOrder(order)
+        openOrderDetail()
+        return false
+      }}
+    >
+      {text}
+    </a>
+  )
 }
 
 export default OrderDetailLink

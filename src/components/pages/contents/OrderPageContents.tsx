@@ -17,22 +17,24 @@ interface IProps extends IOrderPage {
 /**
  * OrderPageContents component
  */
-const OrderPageContents: React.FC<IProps> = props => {
-    const { openModal, orders, selectOrder, taxRate } = props
+const OrderPageContents: React.FC<IProps> = (props) => {
+  const {
+    openModal, orders, selectOrder, taxRate
+  } = props
 
-    return (
-        <div id="contents">
-            <table className="order__table">
-                <OrderTableHead />
-                <OrderTableBody
-                    orders={orders}
-                    openModal={openModal}
-                    selectOrder={selectOrder}
-                    taxRate={taxRate}
-                />
-            </table>
-        </div>
-    )
+  return (
+    <div id="contents">
+      <table className="order__table">
+        <OrderTableHead />
+        <OrderTableBody
+          orders={orders}
+          openModal={openModal}
+          selectOrder={selectOrder}
+          taxRate={taxRate}
+        />
+      </table>
+    </div>
+  )
 }
 
 export default React.memo(OrderPageContents)

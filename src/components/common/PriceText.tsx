@@ -17,13 +17,13 @@ interface IProps {
 /**
  * PriceText component
  */
-const PriceText: React.FC<IProps> = props => {
-    const { amount, fee, taxRate } = props
-    const taxedAmount = Math.floor((amount + fee) * (1 + taxRate))
+const PriceText: React.FC<IProps> = (props) => {
+  const { amount, fee, taxRate } = props
+  const taxedAmount = Math.floor((amount + fee) * (1 + taxRate))
 
-    return (
-        <span>{`${taxedAmount.toLocaleString(navigator.language)} yen`}</span>
-    )
+  return (
+    <span>{`${taxedAmount.toLocaleString(navigator.language)} yen`}</span>
+  )
 }
 
 export default React.memo(PriceText)

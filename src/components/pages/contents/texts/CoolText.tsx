@@ -15,10 +15,10 @@ interface IProps {
 /**
  * CoolText component
  */
-const CoolText: React.FC<IProps> = props => {
-    const { isCool } = props
+const CoolText: React.FC<IProps> = (props) => {
+  const { isCool } = props
 
-    return isCool ? <span className="cool_delivery">クール</span> : null
+  return isCool ? <span className="cool_delivery">クール</span> : null
 }
 
 export default React.memo(CoolText)
