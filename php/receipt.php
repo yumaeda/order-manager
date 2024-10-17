@@ -472,7 +472,7 @@ echo "
             妊娠中や授乳期の飲酒は、胎児・乳児の発育に悪影響を与えるおそれがあります。
             </p>
             <br /><br />
-            有限会社&nbsp;誠屋&nbsp;&nbsp;Anyway-Grapes&nbsp;&nbsp;156-0052&nbsp;東京都&nbsp;世田谷区&nbsp;経堂&nbsp; 2-13-1&nbsp;B1&nbsp;&nbsp;Tel:03.6413.9737&nbsp;&nbsp;Fax:03.6413.9736
+            株式会社エニウェイ・グレイプス&nbsp;&nbsp;Anyway-Grapes&nbsp;&nbsp;156-0052&nbsp;東京都&nbsp;世田谷区&nbsp;経堂&nbsp; 2-13-1&nbsp;B1&nbsp;&nbsp;Tel:03.6413.9737&nbsp;&nbsp;Fax:03.6413.9736
         </div>";
         }
 
