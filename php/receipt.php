@@ -466,13 +466,13 @@ echo "
 
 echo "
         <div id=\"footer\">
-            <p style=\"color:red;font-size:14px;\">※ ヴィンテージワイン（特に赤ワイン）は到着後、澱が舞っている場合がございます。<br />
+            <p style=\"color:red;font-size:14px;\">※ ヴィンテージワイン（特に赤ワイン）は到着後、澱が舞っている場合がございます。<br>
             最低一週間はワインを休ませてからお飲みください。<br><br>
             飲酒は20歳になってから。飲酒運転は法律で禁止されています。<br>
             妊娠中や授乳期の飲酒は、胎児・乳児の発育に悪影響を与えるおそれがあります。
             </p>
-            <br /><br />
-            株式会社エニウェイ・グレイプス&nbsp;&nbsp;Anyway-Grapes&nbsp;&nbsp;156-0052&nbsp;東京都&nbsp;世田谷区&nbsp;経堂&nbsp; 2-13-1&nbsp;B1&nbsp;&nbsp;Tel:03.6413.9737&nbsp;&nbsp;Fax:03.6413.9736
+            <br><br>
+            （株）エニウェイ・グレイプス&nbsp;&nbsp;156-0052&nbsp;東京都&nbsp;世田谷区&nbsp;経堂&nbsp; 2-13-1&nbsp;B1&nbsp;&nbsp;Tel:03.6413.9737&nbsp;&nbsp;Fax:03.6413.9736
         </div>";
         }
 
