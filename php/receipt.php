@@ -267,7 +267,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
     if (isset($_GET['order_id']))
     {
-        $orderId = mysqli_real_escape_string($dbc, $_GET['order_id']);
+        $orderId = mysqli_real_escape_string($dbc, $_GET['order_id'] ?? '');
 
         echo "
 <!DOCTYPE html>

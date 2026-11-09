@@ -14,7 +14,7 @@ require_once("$curDirPath/../defines.php");
 require("$curDirPath/../../../includes/config.inc.php");
 require(MYSQL);
 
-$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId);
+$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId ?? '');
 $result  = mysqli_query($dbc, "CALL get_order_contents('$orderId')");
 if ($result !== FALSE)
 {
