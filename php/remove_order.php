@@ -14,7 +14,7 @@ require_once("$curDirPath/../defines.php");
 require("$curDirPath/../../../includes/config.inc.php");
 require(MYSQL);
 
-$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId);
+$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId ?? '');
 mysqli_query($dbc, "CALL remove_order('$orderId')");
 mysqli_close($dbc);
 

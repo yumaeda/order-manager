@@ -16,8 +16,8 @@ require_once("$curDirPath/../defines.php");
 require("$curDirPath/../../../includes/config.inc.php");
 require(MYSQL);
 
-$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId);
-$trackingId = mysqli_real_escape_string($dbc, $requestBody->trackingId);
+$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId ?? '');
+$trackingId = mysqli_real_escape_string($dbc, $requestBody->trackingId ?? '');
 mysqli_query($dbc, "CALL set_tracking_id('$orderId', '$trackingId')");
 mysqli_close($dbc);
 

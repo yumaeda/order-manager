@@ -16,8 +16,8 @@ require_once("$curDirPath/../defines.php");
 require("$curDirPath/../../../includes/config.inc.php");
 require(MYSQL);
 
-$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId);
-$status  = mysqli_real_escape_string($dbc, $requestBody->status);
+$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId ?? '');
+$status  = mysqli_real_escape_string($dbc, $requestBody->status ?? '');
 mysqli_query($dbc, "CALL set_order_status('$orderId', $status)");
 mysqli_close($dbc);
 

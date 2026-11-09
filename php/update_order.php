@@ -24,6 +24,8 @@ require(MYSQL);
 function getTotalPrice($dbc, $contents, $fMember) {
     $total = 0;
 
+    // Fix: Trim any trailing semicolons so you don't get an empty token at the end
+    $contents = trim($contents, ';'); 
     $tokens = explode(';', $contents);
     foreach ($tokens as $token) {
         $subTokens = explode('#', $token);
@@ -51,11 +53,11 @@ function getTransactionId($dbc, $id) {
     return (strlen($escapedId) !== 14) ? '0000-0000-0000' : $escapedId;
 }
 
-$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId);
+$orderId = mysqli_real_escape_string($dbc, $requestBody->orderId ?? '');
 $paymentMethod  = intval($requestBody->paymentMethod);
-$deliveryDate   = mysqli_real_escape_string($dbc, $requestBody->deliveryDate);
-$deliveryTime   = mysqli_real_escape_string($dbc, $requestBody->deliveryTime);
-$orderContents  = mysqli_real_escape_string($dbc, $requestBody->orderContents);
+$deliveryDate   = mysqli_real_escape_string($dbc, $requestBody->deliveryDate ?? '');
+$deliveryTime   = mysqli_real_escape_string($dbc, $requestBody->deliveryTime ?? '');
+$orderContents  = mysqli_real_escape_string($dbc, $requestBody->orderContents ?? '');
 $transactionId  = getTransactionId($dbc, $requestBody->trackingCode1);
 $transactionId2 = getTransactionId($dbc, $requestBody->trackingCode2);
 $fMember        = intval($requestBody->memberDiscount);
